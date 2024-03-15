@@ -1,0 +1,148 @@
+ .profile__list {
+    margin-top: 5.5rem
+}
+
+@media(max-width: 767px) {
+     .profile__list {
+        margin: 5.5rem -0.5rem 0
+    }
+}
+
+ .profile__list--item {
+    padding: min(1.67vw, 24px) min(3.33vw, 48px);
+    background-color: #f2f2f2;
+    border-radius: 24px
+}
+
+@media(max-width: 767px) {
+     .profile__list--item {
+        padding: 1rem
+    }
+}
+
+ .profile__list--item+.profile__list--item {
+    margin-top: 3.5rem
+}
+
+ .profile__list--person {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto
+}
+
+@media(max-width: 767px) {
+     .profile__list--person {
+        display: block;
+        max-width: 100%
+    }
+}
+
+ .profile__list--person .person--left {
+    width: 40%;
+    margin-top: -3.5rem;
+    text-align: center
+}
+
+@media(max-width: 767px) {
+     .profile__list--person .person--left {
+        width: 100%;
+        margin-top: -3.5rem
+    }
+}
+
+ .profile__list--person .person--left .img {
+    width: min(41.03vw, 160px);
+    max-width: 160px;
+    height: 160px;
+    height: min(41.03vw, 160px);
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #fff;
+    border: 8px solid #d82300;
+    border-radius: 50%
+}
+
+ .profile__list--person .person--left .img img {
+    max-width: 100%
+}
+
+ .profile__list--person .person--left .name {
+    margin-top: 12px;
+    font-size: 2rem
+}
+
+ .profile__list--person .person--left .name span {
+    font-size: 1rem
+}
+
+ .profile__list--person .person--left .name--a {
+    font-size: .875rem;
+    color: #d82300
+}
+
+ .profile__list--person .person--right {
+    width: 60%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .16);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .16)
+}
+
+@media(max-width: 767px) {
+     .profile__list--person .person--right {
+        width: 100%;
+        margin-top: .5rem
+    }
+}
+
+ .profile__list--person .person--right table {
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6
+}
+
+ .profile__list--person .person--right table tr {
+    border-top: 1px solid #e6e6e6
+}
+
+ .profile__list--person .person--right table tr>* {
+    padding: .5rem 0;
+    font-size: .8125rem
+}
+
+ .profile__list--person .person--right table tr td {
+    width: 68.96%;
+    color: #545454
+}
+
+@media(max-width: 767px) {
+     .profile__list--person .person--right table tr td {
+        width: 71.42%
+    }
+}
+
+ .profile__list--comment {
+    width: 100%;
+    max-width: 720px;
+    padding: 20px;
+    margin: 1rem auto 0;
+    color: #545454;
+    background-color: #fff;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .16);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .16)
+}
+
+@media(max-width: 767px) {
+     .profile__list--comment {
+        max-width: 100%;
+        margin: .5rem auto 0
+    }
+}
+.justify-center {
+    justify-content: center;
+}
+

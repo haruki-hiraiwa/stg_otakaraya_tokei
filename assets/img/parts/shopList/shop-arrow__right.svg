@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="_.btn_right" data-name=".btn_right" transform="translate(24 24) rotate(180)">
+    <rect id="back" width="24" height="24" transform="translate(24 24) rotate(180)" fill="none"/>
+    <circle id="bk" cx="8" cy="8" r="8" transform="translate(4 4)" fill="#d82300"/>
+    <path id="path" d="M4.554,4A.467.467,0,0,0,4.4,3.643L.815.137A.455.455,0,0,0,.48,0,.484.484,0,0,0,.236.062.465.465,0,0,0,0,.474a.469.469,0,0,0,.143.34L3.4,4,.143,7.182a.481.481,0,0,0-.079.582.461.461,0,0,0,.172.171A.484.484,0,0,0,.48,8a.455.455,0,0,0,.334-.137L4.4,4.354A.463.463,0,0,0,4.554,4Z" transform="translate(14.277 15.993) rotate(180)" fill="#fff"/>
+  </g>
+</svg>
