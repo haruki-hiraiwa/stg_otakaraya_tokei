@@ -10,7 +10,19 @@ if (is_category()) {
 
   $kind_name = $kind_name . "時計";
 } elseif (is_single()) {
-  $kind_name = 'ブランド時計';
+  $category = get_the_category();
+  $cat = $category[0];
+  $cat_id = $cat->cat_ID;
+  $parent_id = 'category_' . $cat_id;
+
+  $cat_name = get_field('tokei_category_name', $parent_id); //カテゴリー名
+  //カテゴリー名称に何も入力されていなければカタカナ名を取得
+  if (empty($cat_name))
+    $cat_name = get_field('brand_ruby', $parent_id); //カテゴリー名
+
+  $item_name =  $cat_name . " " . "<br class=is-sp>" . get_post_field('tokei_item_name', $current_post_id); //モデル名称
+  if(empty($cat_name))
+    $kind_name = 'ブランド時計';
 } elseif (is_singular('shop')) {
   $kind_name = 'ブランド時計';
 } elseif (is_home() || is_front_page()) {
@@ -33,8 +45,12 @@ if (empty($kind_name)) {
       //ブランド時計の買取に関するよくある質問
 
       //echo get_field('faq_headline', 19083);
-      echo $kind_name . "の<br>買取に関する<span>よくある質問</span>";
-
+      if (is_single()){
+        // echo $brand_name . $model_name . "<br>買取の<span>よくある質問</span>";
+        echo $item_name. "買取の<br><span>よくある質問</span>";
+      }else{
+        echo $kind_name . "の<br>買取に関する<span>よくある質問</span>";
+      }
       ?>
     </h2>
     <div class="titleMain--lead">
