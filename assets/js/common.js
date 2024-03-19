@@ -189,18 +189,21 @@
       $(window).on('load', function(){
         const more3th = 'js__more--3th',
         more2th = 'js__more--2th',
-        moreNum3 = 3,
+        moreNum5 = 5,
+        // moreNum3 = 3,
         moreNum2 = 2;
-        $('.js__more--item3:nth-child(n + ' + (moreNum3 + 1) + ')').addClass('is-hidden').hide();
+        $('.js__more--item3:nth-child(n + ' + (moreNum5 + 1) + ')').addClass('is-hidden').hide();
         $('.js__more--item2:nth-child(n + ' + (moreNum2 + 1) + ')').addClass('is-hidden').hide();
         /* 全てのリストを表示したら「もっとみる」ボタンをフェードアウト */
         $('.js__more--3th').each(function() {
           $('.js__more--btn3').on('click', function() {
 
-            $(this).prev('.js__more--3th').children('.js__more--item3.is-hidden').slice(0, moreNum3).removeClass('is-hidden').show();
+            // $(this).prev('.js__more--3th').children('.js__more--item3.is-hidden').slice(0, moreNum3).removeClass('is-hidden').show();
             // $(this).prev('.js__more--3th').children('.js__more--item3:nth-child(n + ' + (moreNum3 + 1) + ').is-hidden').removeClass('is-hidden').show();
-
-            if ($(this).children(".js__more--item3").length == 0) {
+            const $more3th = $(this).prev('.js__more--3th');
+            $more3th.children('.js__more--item3.is-hidden').slice(0, moreNum5).removeClass('is-hidden').show();
+      
+            if ($more3th.find(".js__more--item3.is-hidden").length == 0) {
               $(this).fadeOut();
             }
           });

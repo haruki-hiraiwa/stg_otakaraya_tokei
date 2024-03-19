@@ -1,5 +1,8 @@
 <?php
 $kind_name = '';
+$url = home_url( add_query_arg( array(), $wp->request ) );
+$slug = basename( untrailingslashit( $url ) );
+
 if (is_category()) {
   //$kind_name = str_replace('買取', '', get_queried_object()->name);
   $cat_id = get_queried_object()->cat_ID;
@@ -76,12 +79,20 @@ if (empty($kind_name)) {
 
     $args = array(
       'post_type' => 'faq',
-      'posts_per_page' => 10,
-      'order' => 'DESC',
+      'posts_per_page' => 30,
+      'order' => 'ASC',
+      'orderby' => 'menu_order', // 管理画面(よくある質問一覧)の表示順
+      'post_status' => 'publish', // 非公開の投稿を除外する
       'tax_query' => array(
+        'relation' => 'OR',
         array(
           'taxonomy' => 'view_cat',
           'terms' => array($target_term),
+          'field' => 'slug'
+        ),
+        array(
+          'taxonomy' => 'faq_show_tag',
+          'terms' => $slug,
           'field' => 'slug'
         ),
       ),
