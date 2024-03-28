@@ -203,6 +203,10 @@ get_template_part('head');
                   <?php endif; ?>
                 </td>
               </tr>
+              <tr>
+                <th>近隣エリア</th>
+                <td><?php the_field('n_kinrin_area'); ?></td>
+              </tr>
             </table>
 
             <?php
@@ -1012,7 +1016,7 @@ get_template_part('head');
 
                 </div>
               </section>
-            <?php  }; ?>
+            <?php  } wp_reset_postdata(); ?>
 
 
 
@@ -1027,7 +1031,8 @@ get_template_part('head');
           <section>
             <div class="titleMain titleMain--wrapper">
               <h2 class="titleMain--main">
-                他社圧倒の<span>買取実績</span>
+                <?php echo get_the_title(); ?>
+                の<span>買取実績</span>
               </h2>
               <div class="titleMain--lead">
                 <p>買取価格に関しては時期や相場により<br>変動致しますので、お問合せ下さい</p>
@@ -1489,7 +1494,51 @@ get_template_part('head');
 
       <!--     ▲▲▲ジャンル別買取情報▲▲▲     -->
 
+      <!-- 店舗導線追加 -->
+      <section class="shop__detail--shoplist">
+        <?php
+        $url = $_SERVER['REQUEST_URI'];
+        $last_segment = basename(parse_url($url, PHP_URL_PATH));
+        $categories = ['brand', 'gold', 'brand-tokei', 'daiya', 'app'];
+        $base_url = 'https://www.otakaraya.jp/';
+        echo '<div class="shop__detail--shopBtnList" style="justify-content: space-between;padding: 16px 45px;">';
+        foreach ($categories as $category) {
+          $link_url = $base_url . $category . '/shop/' . $last_segment . '/';
+          $url_segments = '/' . $category . '/shop/' . $last_segment . '/';
 
+          switch ($category) {
+            case 'brand':
+              $category = "ブランド";
+              break;
+            case 'gold':
+              $category = "金";
+              break;
+            case 'daiya':
+              $category = "宝石";
+              break;
+            case 'brand-tokei':
+              $category = "ブランド時計";
+              break;
+            case 'app':
+              $link_url = $base_url  . 'shop/' . $last_segment . '/';
+              $category = "総合";
+              break;
+          }
+          // 現在のURLと一致しない場合
+          if ($url_segments !== $url) {
+            echo '<div class="btn__wrap btn__normal--back">';
+            echo '<a style="margin:1rem auto 0;" href="' . $link_url . '">';
+            echo $category . 'の' . get_the_title(); // 店舗名
+            echo '</a>';
+            echo '</div>';
+          }
+        }
+        echo '</div>';
+        ?>
+
+      </section>
+
+      <!-- 店舗導線追加 -->
 
 
       <!--     ▼▼▼コラム▼▼▼     -->
