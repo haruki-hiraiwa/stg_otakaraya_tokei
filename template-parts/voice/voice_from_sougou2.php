@@ -165,7 +165,21 @@
     if (!empty($voice_to_display)) {
         echo '<div class="titleMain titleMain--wrapper voice_title">';
         echo '<h2 class="titleMain--main">';
-        if ($headline !== false && !empty($headline)) {
+        if(is_category() && $slug1 === 'brand-tokei'){
+            $cat_title = single_cat_title('', false);
+            echo $cat_title . 'を<span><br = class=is-sp>ご利用のお客様の声</span>';
+        } elseif(is_category() && $slug1 === 'brand'){
+            $cat_title = single_cat_title('', false);
+            echo $cat_title . 'を<span><br = class=is-sp>ご利用されたお客様の声</span>'; 
+        }
+        elseif($post->post_name === 'daiya'){
+            echo 'ダイヤ買取を<span><br class=is-sp>ご利用されたお客様の声</span>';
+        } elseif($post->post_name === 'brand'){
+            echo 'ブランド買取を<span><br class=is-sp>ご利用されたお客様の声</span>';
+        } elseif($post->post_name === 'gold-top'){
+            echo 'お客様の<span>口コミ</span>';
+        }
+        elseif ($headline !== false && !empty($headline) && $post->post_name !== 'brand-tokei') {
             echo $headline;
         } else {
             echo "ブランド時計買取を<span><br class=is-sp>ご利用されたお客様の声</span>";
