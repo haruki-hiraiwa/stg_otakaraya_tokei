@@ -406,7 +406,7 @@ get_template_part('head');
 
         <!--     ▼▼▼お客様の口コミ▼▼▼     -->
 
-        <?php get_template_part('/template-parts/voice/voice'); ?>
+        <?php get_template_part('/template-parts/voice/voice_from_sougou2'); ?>
 
         <!--     ▲▲▲お客様の口コミ▲▲▲     -->
 
