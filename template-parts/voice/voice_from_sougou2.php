@@ -24,7 +24,7 @@
     $count = 0;
     $max_voice = 5;
     // $voice_display_number = get_field('voice_display_number', $paged_id); // 管理画面から表示させたい口コミ件数を指定
-    $headline = get_field('customer_reviews_headline', $paged_id); // 管理画面から表示させたいタイトルを指定
+    $headline = str_replace('買取', '', get_the_title()) . "買取を<span><br class=is-sp>ご利用されたお客様の声</span>";
 
 
     $file_path = ABSPATH . '../posts-json/voice_posts2.json';
@@ -41,7 +41,17 @@
     if (is_page() && $slug1 === 'gold') {
         $page = get_post(get_the_ID());
         $slug3 = $page->post_name;
-        $slug2 = '';
+        $slug2 = 'no-category';
+    }
+    if (is_page() && $slug1 === 'daiya') {
+        $page = get_post(get_the_ID());
+        $slug3 = $page->post_name;
+        $slug2 = 'no-category';
+    }
+    if (is_page() && $slug1 === 'brand') {
+        $page = get_post(get_the_ID());
+        $slug3 = $page->post_name;
+        $slug2 = 'no-category';
     }
 
     $num_slugs = count($path_parts); // urlのスラッグ数
@@ -88,33 +98,7 @@
         $voice_cat1 = $voice_cats['voice_cat1'];
         $voice_cat2 = $voice_cats['voice_cat2'];
         $voice_cat3 = $voice_cats['voice_cat3'];
-        // print_r($voice_cats['voice_cat1']) . '<br>';
-        // print_r($voice_cats);
-        // print_r($voice_cat1[0]);
-        // print_r($voice_cat2);
-        // print_r($voice_cat3);
 
-        if (($slug1 === 'gold' || $slug1 === 'daiya') && $num_slugs == 2) {
-            if (in_array($slug2, $voice_cat3)) {
-                $filtered_voice2[] = $voice;
-            }
-        }
-        if (($slug1 === 'gold' || $slug1 === 'daiya') && $num_slugs == 3) {
-            if (in_array($slug3, $voice_cat3)) {
-                $filtered_voice3[] = $voice;
-            }
-        }
-
-
-        // $filtered_voice1 /brand
-        // $filtered_voice2 /brand/hermes
-        // $filtered_voice3 /brand/hermes/birkin
-        // slugs三つで口コミがない場合$filtered_voice2を呼び出す
-        // slugs二つで口コミがない場合$filtered_voice1を呼び出す
-
-
-        // brand/hermes/birkin 三つとも選択された場合
-        // filtered_voice3
         if (
             // $num_slugs == 3 &&
             in_array($slug1, $voice_cat1) &&
@@ -133,7 +117,9 @@
             in_array($slug1, $voice_cat1) &&
             in_array($slug2, $voice_cat2)
         ) {
+            if ($slug1 === 'brand' || $slug1 === 'brand-tokei') {
             $filtered_voice2[] = $voice;
+            }
         }
 
         // brand/トップ
@@ -149,9 +135,10 @@
         $count++;
     }
 
+
     $display_count = 30;
 
-    if (is_single()) {
+    if (is_single() || is_page()) {
         if (count($filtered_voice3) == 0) {
             if (count($filtered_voice2) == 0) {
                 $filtered_voice = $filtered_voice1;
