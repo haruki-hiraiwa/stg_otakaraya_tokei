@@ -731,11 +731,11 @@ get_template_part('head');
                   </dl>
                 <?php
                 endif;
+                $host_url = 'https://' . $_SERVER['HTTP_HOST'];
                 ?>
 
-
                 <div class="btn__wrap btn__red">
-                  <a href="<?php echo "https://www.otakaraya.jp/brand-tokei/shop/"; ?>"> <?php echo "ブランド時計買取の店舗ページ一覧"; ?> </a>
+                  <a href="<?php echo $host_url . "/brand-tokei/shop/"; ?>"> <?php echo "ブランド時計の買取の直営店舗一覧"; ?> </a>
                 </div>
                 <?php
                 if ($icinity_post_num <= 1) : ?>
