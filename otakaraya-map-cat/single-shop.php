@@ -595,6 +595,10 @@ get_template_part('head');
           <?php get_template_part('/template-parts/common/manager_comment'); ?>
           <!--     ▲▲▲店長コメント▲▲▲     -->
 
+          <!--     ▼▼▼よく頂く質問をご紹介▼▼▼     -->
+          <?php get_template_part('/template-parts/faq/introduce_faq'); ?>
+          <!--     ▲▲▲よく頂く質問をご紹介▲▲▲     -->
+
           <!--     ▼▼▼近隣店舗▼▼▼     -->
 
           <?php
