@@ -41,7 +41,7 @@ if(!empty(get_field('n_tel1_text'))){
         $answer = the_field_without_wpautop('faq_answer');
         $slug = $post->post_name;
     ?>
-    <div>
+    <div class="intro_faq">
         <div class="question_Box">
             <div class="arrow_question qa__list__q"><?php echo $question;?></div>
         </div>
@@ -65,8 +65,8 @@ if(!empty(get_field('n_tel1_text'))){
 
 <style>
      
-.arrow_question,
-.arrow_answer {
+.intro_faq .arrow_question,
+.intro_faq .arrow_answer {
     position: relative;
     background: #f2f2f2;
     border: 1px solid #c8c8c8;
@@ -75,81 +75,56 @@ if(!empty(get_field('n_tel1_text'))){
     font-size: 14px;
     padding:15px 10px 15px 50px;
 }
-.arrow_question{
+.intro_faq .arrow_question{
     background:#fff;
 }
  
-.arrow_answer {
+.intro_faq .arrow_answer {
     float: right;
     border: none;
 }
  
-/* .arrow_question:after,
-.arrow_question:before,
-.arrow_answer:after,
-.arrow_answer:before {
-    top: 30%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-} */
- 
-.arrow_answer:after,
-.arrow_answer:before {
+.intro_faq .arrow_answer:after,
+.intro_faq .arrow_answer:before {
     right: 100%;
 }
  
-/* .arrow_question:after,
-.arrow_question:before{
-     left: 100%;
-} */
- 
-.arrow_question:after,
-.arrow_answer:after {
+.intro_faq .arrow_question:after,
+.intro_faq .arrow_answer:after {
     border-color: rgba(255, 255, 255, 0);
     border-width: 8px;
     margin-top: -8px;
 }
  
-.arrow_question:after{
+.intro_faq .arrow_question:after{
     border-left-color: #fff;
 }
  
-.arrow_answer:after{
+.intro_faq .arrow_answer:after{
     border-right-color: #fff;
      
 }
  
-/* .arrow_question:before,
-.arrow_answer:before {
-    border-color: rgba(200, 200, 200, 0);
-    border-width: 9px;
-    margin-top: -9px;
-} */
- 
-.arrow_question:before{
+.intro_faq .arrow_question:before{
     border-left-color: #c8c8c8;
 }
  
-.arrow_answer:before {
+.intro_faq .arrow_answer:before {
     border-right-color: #c8c8c8;    
 }
  
-.question_image{
+.intro_faq .question_image{
      float: left;
      width:15%;
 }
  
-.answer_image{
+.intro_faq .answer_image{
      float: right;
      width:15%;
 }
  
-.answer_image img,
-.question_image img{
+.intro_faq .answer_image img,
+.intro_faq .question_image img{
     border-radius: 50px;
     display: block;
     margin: 0 auto;
@@ -157,25 +132,21 @@ if(!empty(get_field('n_tel1_text'))){
     width: 100%;
 }
  
-.question_Box .name {
+.intro_faq .question_Box .name {
     text-align: center;
     font-size: 12px;
 }
-.question_Box{
+.intro_faq .question_Box{
      width: 100%;
      overflow: hidden;
-     /* margin-bottom: 8px; */
 }
-/* .question_Box:nth-child(even){
-     margin-bottom: 25px;
-} */
-.qa__list__q::before,
-.qa__list__a::before{
+
+.intro_faq .qa__list__q::before,
+.intro_faq .qa__list__a::before{
     margin: 0px 15px;
 }
 
-
-.qa__list__q{
+.intro_faq .qa__list__q{
     margin:1rem 0;
 }
 
