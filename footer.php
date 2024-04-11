@@ -45,6 +45,38 @@
       });
     </script>
     <script>
+      let sliders_3 = ["slider_only_3"];
+      sliders_3.forEach((slider) => {
+        let elem = document.getElementById(slider);
+        $(elem).slick({
+          arrows: true, // 矢印あり
+          dots: true, // ドットあり
+          appendArrows: $("." + slider + '--arrow'),
+          appendDots: $("." + slider + '--dot'),
+          autoplay: false,
+          autoplaySpeed: 5000,
+          centerMode: false,
+          responsive: [{
+            breakpoint: 9999,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            }
+          }, {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              centerMode: false,
+              variableWidth: true,
+            }
+          }]
+        });
+      });
+    </script>
+
+
+    <script>
       /* スライダー(SPのみ) */
       function checkBreakPoint() {
         let slidersScOnly = ["flex-slider-sp5"];

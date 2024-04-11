@@ -132,6 +132,70 @@ elseif (is_singular('shop')) :
 
 endif;
 
+$mode = "";
+if ($_GET["mode"]) {
+  $mode = $_GET["mode"];
+}
+if ($mode != "test") {
+
+  $slider_img = $image_url;
+  $slider_img_sp = $image_url_sp;
+  $slider_link = $image_link;
+
+  //特定の店舗のみ上書き
+  if ($slider2) {
+    $slider_img = $slider_img_campaing;
+    $slider_img_sp = $slider_img_campaing_sp;
+    $slider_link = '';
+  }
+
+  if (!$slider_img) {
+    $slider_img = $second_image;
+    $slider_img_sp = $second_image_sp;
+    $slider_link = $second_image_link;
+  }
+
+  if (!$slider_img) {
+    $slider_img = $page_top_slider_repeat[1]['page_top_slider_img'];
+    $slider_img_sp = $page_top_slider_repeat[1]['page_top_slider_img_sp_2'];
+    $slider_link = $page_top_slider_repeat[1]['page_top_slider_link'];
+  }
+
+?>
+  <style>
+    .mv_img_top {
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .mv_img {
+      max-width: 1150px;
+      margin: auto;
+    }
+  </style>
+
+  <?php
+  if (is_front_page()) {
+  ?>
+    <div class="mv_img_top">
+      <img style="width: 100%; border-radius: 24px;" class=" is-pc" src=<?php echo $slider_img; ?> alt="おたからやメインビジュアル">
+    </div>
+    <div class="mv_img_top">
+      <img style="width: 100%; border-radius: 24px;" class=" is-sp" src=<?php echo $slider_img_sp; ?> alt="おたからやメインビジュアル">
+    </div>
+  <?php
+  } else {
+  ?>
+    <div class="mv_img">
+      <img style="width: 100%; border-radius: 24px;" class=" is-pc" src=<?php echo $slider_img; ?> alt="おたからやメインビジュアル">
+    </div>
+    <div class="mv_img">
+      <img style="width: 100%; border-radius: 24px;" class=" is-sp" src=<?php echo $slider_img_sp; ?> alt="おたからやメインビジュアル">
+    </div>
+  <?php
+  }
+} else {
+
 if ($repeat_cnt >= 1) : ?>
   <div class="slide__wrap01">
     <div id="slide01" class="slide__inner">
@@ -367,6 +431,7 @@ if ($repeat_cnt >= 1) : ?>
 
 <!-- クーポン -->
 <?php
+}
 include("/home/www_ebs/stg.otakaraya.jp/htdocs/assets/qr_coupon.php");
 ?>
 <!-- クーポン -->

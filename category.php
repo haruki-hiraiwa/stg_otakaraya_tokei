@@ -150,10 +150,6 @@ get_template_part('head');
 
 
 
-      <!-- ▼▼▼買取相場価格一覧 -->
-      <section></section>
-      <?php get_template_part('/template-parts/common/purchase_market_price_list'); ?>
-      <!-- ▲▲▲買取相場価格一覧 -->
 
 
       <!--     ▼▼▼状態が悪いものでも買取▼▼▼     -->
