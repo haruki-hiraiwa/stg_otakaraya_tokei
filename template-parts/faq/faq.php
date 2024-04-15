@@ -26,7 +26,7 @@ if (is_category()) {
   $item_name =  $cat_name . " " . "<br class=is-sp>" . get_post_field('tokei_item_name', $current_post_id); //モデル名称
   if(empty($cat_name))
     $kind_name = 'ブランド時計';
-} elseif (is_singular('shop')) {
+} elseif (is_singular('shop') || is_singular('area_vicinity')) {
   $kind_name = 'ブランド時計';
 } elseif (is_home() || is_front_page()) {
   $kind_name = 'ブランド時計';
@@ -48,7 +48,9 @@ if (empty($kind_name)) {
       //ブランド時計の買取に関するよくある質問
 
       //echo get_field('faq_headline', 19083);
-      if (is_single()){
+      if(is_singular('area_vicinity')){
+        echo "よくある<span>質問</span>";
+      }elseif(is_single()){
         // echo $brand_name . $model_name . "<br>買取の<span>よくある質問</span>";
         echo $item_name. "買取の<br><span>よくある質問</span>";
       }else{
@@ -73,6 +75,8 @@ if (empty($kind_name)) {
       $target_term = 'page-model';
     elseif (is_singular('shop')) :
       $target_term = 'page-shop';
+    elseif (is_singular('area_vicinity')) :
+      $target_term = 'page-area_vicinity';
     endif;
 
     // echo "target_term = ".$target_term."<BR>";

@@ -85,7 +85,7 @@
   <?php if (is_post_type_archive('shop') || is_tax('area')) : ?>
     <link rel="stylesheet" type="text/css" href="<?php echo THEME_URL; ?>assets/css/shop.min.css" />
   <?php endif; ?>
-  <?php if (is_singular('shop')) : ?>
+  <?php if (is_singular('shop') || is_singular('area_vicinity')) : ?>
     <link rel="stylesheet" type="text/css" href="<?php echo THEME_URL; ?>assets/css/shopdetail.min.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo THEME_URL; ?>assets/css/shop_manager_comment.min.css" />
   <?php endif; ?>
