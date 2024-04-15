@@ -73,7 +73,7 @@ if (have_rows('shop_page_slider2', 21104)) :
     $str = get_sub_field('shop_page_slider2_apply_list', 21104);
     $locationsArray = array_map('trim', explode("\n", $str));
 
-    if (in_array($currentSlug, $locationsArray) && is_singular('shop')) {
+    if (in_array($currentSlug, $locationsArray) && (is_singular('shop') || is_singular('area_vicinity'))) {
       if ($current_date >= $shop_page_slider2_start_time && $current_date <= $shop_page_slider2_end_time) {
         $pc_image = get_sub_field('shop_page_slider2_pc', 21104);
         if (!empty($pc_image))
@@ -119,7 +119,7 @@ elseif (is_singular('post')) :
   $fourth_image = get_field('fourth_image_model', 21104);
   $fourth_image_sp = get_field('fourth_imagesp_model', 21104);
   $fourth_image_link = get_field('fourth_image_link_model', 21104);
-elseif (is_singular('shop')) :
+elseif (is_singular('shop') || is_singular('area_vicinity')) :
   $second_image = get_field('second_image_shop', 21104);
   $second_image_sp = get_field('second_imagesp_shop', 21104);
   $second_image_link = get_field('second_image_link_shop', 21104);
@@ -277,7 +277,7 @@ if ($repeat_cnt >= 1) : ?>
             }
 
             //スライダー４枚目の画像を差し替え
-            if (is_singular('shop')) {
+            if (is_singular('shop') || is_singular('area_vicinity')) {
               $pc_image = get_field('shop_page_slider_pc', 21104);
               if (!empty($pc_image))
                 $slider_img = $pc_image['url'];;
@@ -395,7 +395,7 @@ if ($repeat_cnt >= 1) : ?>
               }
 
               //スライダー４枚目の画像を差し替え
-              if (is_singular('shop')) {
+              if (is_singular('shop') || is_singular('area_vicinity')) {
                 $pc_image = get_field('shop_page_slider_pc', 21104);
                 if (!empty($pc_image))
                   $slider_img = $pc_image['url'];;

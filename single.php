@@ -147,6 +147,7 @@ get_template_part('head');
           <?php if (get_field('purchase_record_headline')) : ?>
             <div class="titleMain titleMain--wrapper">
               <h2 class="titleMain--main">
+                <?php $thisbrand = get_field('purchase_record_headline'); ?>
                 <?php the_field('purchase_record_headline'); ?>
               </h2>
               <div class="titleMain--lead">
@@ -257,6 +258,345 @@ get_template_part('head');
         </style>
 
         <!--     ▲▲▲買取実績▲▲▲     -->
+
+
+
+
+
+
+        <!--     ▼▼▼買取強化型番と買取相場▼▼▼     -->
+        <?php
+        if (have_rows('watch_enchancedno4_repeater', $page_id)){
+          $watch_enchancedno4_repeater = "" ;
+          while (have_rows('watch_enchancedno4_repeater', $page_id)) : the_row();
+            $watch_enchancedno4_repeater .= get_sub_field('pid', $page_id) . "," ;
+          endwhile;
+
+if( strlen( $watch_enchancedno4_repeater) > 0 ){
+
+          $query = array(
+            'post_type' => 'result' ,
+            'numberposts' => '-1' ,
+            'include' => $watch_enchancedno4_repeater ,
+            'orderby' => 'post__in' 
+          );
+          
+          $postwatchs = get_posts( $query );
+          if( $postwatchs ){
+            echo '<section style="margin-top:4rem;">' ;
+            echo '<div class="titleMain titleMain--wrapper">' ;
+            echo '<h2 class="titleMain--main watch_enchancedno4_h2">' ;
+
+            $thisbrand = str_replace( "買取実績" , "" , $thisbrand ) ;
+            $thisbrand = strip_tags( $thisbrand ) ;
+            $thisbrand = str_replace( " " , ' <br class="is-sp">' , $thisbrand ) ;
+
+
+            echo str_replace( "買取実績" , "" , $thisbrand );
+            echo 'の<br class="is-sp">買取強化型番' ;
+            echo '</h2>' ;
+            echo '</div>' ;
+            echo '<div class="watch_enhancedno4_flex">' ;
+            $loopcounter = 0 ;
+            foreach( $postwatchs as $postwatch ){
+              echo '<div class="watch_enhancedno4_item_wrap">' ;
+              $tempurl = get_permalink( $postwatch->ID ) ;
+              $tempurl = str_replace( "NULL" , "" , $tempurl );
+              echo '<a href="' . $tempurl . '" class="img__link">' ;
+              echo '<div class="watch_enhancedno4_item">' ;
+              echo '<p class="watch_enhancedno4_item_imagebox img">' ;
+              $w_image = wp_get_attachment_image_src(get_field('img_path' , $postwatch->ID ) , "full" ) ;
+              echo '<img class="watch_enhancedno4_item_image" src="' .$w_image[0] . '">' ;
+              echo '</p>' ;
+              echo '<div class="watch_enhancedno4_itemname">';
+              echo get_the_title( $postwatch->ID ) ;
+              echo '</div>' ;
+              echo '<div class="watch_enhancedno4_itemprice">';
+              echo '<span>買取実績</span> ' . number_format( get_field( 'price' , $postwatch->ID ) ) . "<span>円</span>";
+              echo '</div>' ;
+              echo '</div>' ;
+              echo '</a>' ;
+              echo '</div>' ;
+              unset( $w_image );
+              unset( $tempurl ) ;
+              $loopcounter++ ;
+            }
+            
+            echo '</section>' ;
+          }
+}
+        }
+        ?>
+<style>
+.watch_enchancedno4_h2{
+  word-break: auto-phrase ;
+}
+.watch_enhancedno4_flex{
+  position: relative ;
+  display: flex ;
+  box-sizing : border-box ;
+  flex-wrap: wrap ;
+  justify-content: center ;
+  margin : 2rem auto 2rem ;
+}
+.watch_enhancedno4_item_wrap{
+  position: relative;
+  display: block ;
+  box-sizing: border-box ;
+  width : 240px ;
+  margin : 0px 10px 20px ;
+}
+.watch_enhancedno4_item{
+  width: 100% ;
+}
+.watch_enhancedno4_item_imagebox{
+  width : 100% ;
+  aspect-ratio: 1 / 1 ;
+}
+.watch_enhancedno4_item_image{
+  width: 100% ;
+  height: 100% ;
+  object-fit: contain ;
+}
+.watch_enhancedno4_itemname{
+  position: relative;
+  display: block ;
+  width: 100% ;
+  text-align: center ;
+  font-size : 18px ;
+  font-weight: 700 ;
+  margin-top : 1rem ;
+}
+.watch_enhancedno4_itemprice{
+  color: #cc1d2c ;
+  position: relative;
+  display: block ;
+  width: 100% ;
+  text-align: center ;
+  font-size : 20px ;
+  font-weight: 700 ;
+}
+.watch_enhancedno4_itemprice span{
+  font-size: 14px ;
+}
+
+@media (max-width: 767px) {
+
+.watch_enhancedno4_item_wrap{
+  width : 40% ;
+  max-width: 200px;
+  margin : 0px 5% 20px ;
+}
+
+
+}
+</style>
+        <!--     ▲▲▲買取強化型番と買取相場▲▲▲     -->
+
+
+
+
+
+
+
+
+        <!--     ▼▼▼価格上昇中の型番▼▼▼     -->
+        <?php
+          if (have_rows('watch_pricerising_repeater', $page_id)){
+            $watch_pricerising_id = "" ;
+            $watch_pricerising_oldyear = array() ;
+            $watch_pricerising_oldprice = array() ;
+            while (have_rows('watch_pricerising_repeater', $page_id)) : the_row();
+              $watch_pricerising_id .= get_sub_field('pid', $page_id) . "," ;
+              $watch_pricerising_oldyear[] = get_sub_field('oldyear', $page_id) ;
+              $watch_pricerising_oldprice[] = get_sub_field('oldprice', $page_id) ;
+            endwhile;
+          }
+          $watch_modelname = get_field( 'tokei_item_name' , $page_id ) ;
+// echo "<!-- " . strlen( $watch_pricerising_id ) . " -->" ;
+if( strlen( $watch_pricerising_id ) > 0 ){
+
+          $query = array(
+            'post_type' => 'result' ,
+            'numberposts' => '-1' ,
+            'include' => $watch_pricerising_id ,
+            'orderby' => 'post__in' 
+          );
+
+          $loopcounter = 0 ;
+          $postwatchs = get_posts( $query );
+          if( $postwatchs ){
+            echo '<section style="margin-top:4rem;">' ;
+            echo '<div class="titleMain titleMain--wrapper">' ;
+            echo '<h2 class="titleMain--main watch_pricerizing_h2">' ;
+            echo "価格上昇中の" . $watch_modelname . 'の型番' ;
+            echo '</h2>' ;
+            echo '</div>' ;
+            echo '<div class="watch_pricerizing_flex">' ;
+            
+            foreach( $postwatchs as $postwatch ){
+              $tempurl = get_permalink( $postwatch->ID ) ;
+              $tempurl = str_replace( "NULL" , "" , $tempurl );
+              echo '<div class="watch_pricerising_box_wrap">' ;
+              echo '<a href="' . $tempurl . '" class="img__link">' ;
+              echo '<div class="watch_pricerising_box">' ;
+              
+              echo '<div class="watch_pricerising_img">' ;
+              echo '<p class="watch_pricerising_img_p img">' ;
+              $w_image = wp_get_attachment_image_src(get_field('img_path' , $postwatch->ID ) , "full" ) ;
+              echo '<img class="watch_pricerising_images" src="' .$w_image[0] . '">' ;
+              echo '</p>' ;
+              echo '</div>' ;
+
+              echo '<div class="watch_pricerising_right_wrap">' ;
+              echo '<div class="watch_pricerising_model">' ;
+              echo get_the_title( $postwatch->ID ) ;
+              echo '</div>' ;
+              echo '<div class="watch_pricerising_before">' ;
+              echo '販売年代 ' ;
+              echo $watch_pricerising_oldyear[$loopcounter] ;
+              echo '<br>' ;
+              echo '参考定価 ' ;
+              echo $watch_pricerising_oldprice[$loopcounter] ;
+              echo '</div>' ;
+              echo '<div class="watch_pricerising_now">';
+              echo '<span>買取実績</span><br>' . number_format( get_field( 'price' , $postwatch->ID ) ) . "<span>円</span>";
+              echo '</div>' ;
+              echo '</div>' ;
+              echo '</div> <!-- watch_pricerising_box -->' ;
+              echo '</a>' ;
+              echo '</div>' ;
+
+              $loopcounter++ ;
+              unset( $tempurl ) ;
+              unset( $w_image ) ;
+            }
+
+            echo '</div>' ;
+            echo '</section>' ;
+          }
+}
+
+        ?>
+<style>
+.watch_pricerizing_h2{
+  word-break: auto-phrase ;
+}
+.watch_pricerizing_flex{
+  width: 100% ;
+  position: relative;
+  display: flex ;
+  flex-wrap: wrap ;
+  box-sizing: border-box ;
+  margin : 2rem auto 2rem ;
+  justify-content: center ;
+}
+
+.watch_pricerising_box_wrap{
+  position: relative;
+  display: block ;
+  box-sizing: border-box ;
+  width : 240px ;
+  margin : 0px 10px 20px ;
+}
+.watch_pricerising_box{
+  width: 100% ;
+}
+.watch_pricerising_img{
+  position: relative;
+  display: block ;
+  width: 100% ;
+  aspect-ratio: 1 / 1 ;
+  border-radius: 24px ;
+  overflow: hidden ;
+}
+.watch_pricerising_img_p{
+  width: 100% ;
+  aspect-ratio: 1 / 1 ;
+}
+.watch_pricerising_images{
+  width: 100%;
+  height: 100% ;
+  object-fit: contain ;
+}
+.watch_pricerising_right_wrap{
+  position: relative;
+  display: block ;
+  box-sizing: border-box ;
+  width: 100%;
+}
+
+.watch_pricerising_model{
+  margin-top : 1rem ;
+  font-size: 18px ;
+  font-weight: 700 ;
+  text-align: center ;
+  word-break: auto-phrase ;
+}
+.watch_pricerising_before{
+  position: relative ;
+  display: block ;
+  color : gray ;
+  font-weight: 700 ;
+  box-sizing: border-box;
+  font-size: 14px ;
+  text-align: center ;
+}
+.watch_pricerising_now{
+  color: #cc1d2c ;
+  position: relative;
+  display: block ;
+  width: 100% ;
+  font-size : 20px ;
+  font-weight: 700 ;
+  text-align: center ;
+  line-height: 1.2;
+}
+.watch_pricerising_now span{
+  font-size: 14px ;
+}
+
+
+@media (max-width: 767px) {
+
+.watch_pricerising_box_wrap{
+  width : 40% ;
+  max-width: 200px;
+  margin : 0px 5% 20px ;
+}
+
+}
+
+</style>
+
+        <!--     ▲▲▲価格上昇中の型番▲▲▲     -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

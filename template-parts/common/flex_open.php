@@ -5,6 +5,10 @@ if (is_category()) {
 } else {
   $post_id = get_the_ID();
 }
+if(is_singular('area_vicinity')){
+  $post_id = get_page_by_path('brand-tokei');
+  $post_id = $post_id->ID;
+}
 ?>
 <?php
 $rp_cnt =  count(get_field('purchase_achieve_brand_repeat', $post_id));
@@ -180,7 +184,11 @@ if ($rp_cnt > 0) :
   <section class="tabContents_open">
     <div class="titleMain titleMain--wrapper">
       <h2 class="titleMain--main">
-        <?php the_field('purchase_achieve_headline', $post_id); ?>
+        <?php if(is_singular('area_vicinity')) { ?>
+          <?php echo get_field('genre_purchase_goods_headline'); ?>
+        <?php } else{ ?>
+          <?php the_field('purchase_achieve_headline', $post_id); ?>
+        <?php } ?>
       </h2>
       <div class="titleMain--lead">
         <p><?php the_field('purchase_achieve_lead_text', $post_id); ?></p>

@@ -164,7 +164,7 @@
     endif; ?>
 
 
-  <?php elseif (is_singular('shop')) : ?>
+  <?php elseif (is_singular('shop') || is_singular('area_vicinity')) : ?>
 
     <script>
       /*メインビジュアルユニット1*/

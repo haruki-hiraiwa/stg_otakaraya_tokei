@@ -2114,7 +2114,7 @@ function get_faq_json_ld()
     $kind_name = '';
     if (is_category()) {
         $kind_name = str_replace('買取', '', get_queried_object()->name);
-    } elseif (is_singular('shop')) {
+    } elseif (is_singular('shop') || is_singular('area_vicinity')) {
         $kind_name = 'ブランド時計';
     } elseif (is_home() || is_front_page()) {
         $kind_name = 'ブランド時計';
@@ -2133,6 +2133,9 @@ function get_faq_json_ld()
         $target_term = 'page-model';
     elseif (is_singular('shop')) :
         $target_term = 'page-shop';
+    elseif (is_singular('area_vicinity')) :
+        $target_term = 'page-area_vicinity';
+    
     endif;
     $args = array(
         'post_type' => 'faq',
