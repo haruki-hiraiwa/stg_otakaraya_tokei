@@ -152,11 +152,7 @@ get_template_part('head');
 
 
 
-      <!--     ▼▼▼状態が悪いものでも買取▼▼▼     -->
-      <section></section>
-      <?php get_template_part('/template-parts/common/state_bad_purchase'); ?>
 
-      <!--     ▲▲▲状態が悪いものでも買取▲▲▲     -->
 
 
 
@@ -272,7 +268,11 @@ get_template_part('head');
 
       <!--     ▲▲▲おたからやが選ばれる理由▲▲▲     -->
 
+      <!--     ▼▼▼状態が悪いものでも買取▼▼▼     -->
+      <section></section>
+      <?php get_template_part('/template-parts/common/state_bad_purchase'); ?>
 
+      <!--     ▲▲▲状態が悪いものでも買取▲▲▲     -->
 
 
 
